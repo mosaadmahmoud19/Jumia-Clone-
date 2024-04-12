@@ -1,0 +1,48 @@
+
+
+<div class="bg-white">
+    <div class="container">
+      <form [formGroup]="logintwofactor" (ngSubmit)="login2fac()">
+      <div class="login row justify-content-center  align-items-center">
+         
+              
+                  <div class="col-md-6"><img src="./assets/Images/login.jpg" class="w-100" alt=""></div>
+                  <div class="col-md-6">
+                    
+                    <div class="form-item">
+                      <label for="code">code</label>
+                      <input formControlName="code" type="text" class="form-control" placeholder="code" id="code">
+                      @if (logintwofactor.get("code")?.errors &&logintwofactor.get("code")?.touched) {
+                        @if (logintwofactor.get("code")?.getError("required")) {
+                          <p class="text-danger">code is required</p>
+                        }
+                      }
+                    </div>
+                    <div class="form-item">
+                      <label for="username">username</label>
+                      <input formControlName="username" type="text" class="form-control" placeholder="username" id="username">
+                      @if (logintwofactor.get("username")?.errors &&logintwofactor.get("username")?.touched) {
+                        @if (logintwofactor.get("username")?.getError("required")) {
+                          <p class=" text-danger">username is required</p>
+                        }
+                     
+                      }
+                    </div>
+                   
+                
+                    @if (isLoading) {
+                      
+                      <button [disabled]="logintwofactor.valid" class="btn " ><i class="fa-solid fa-spinner fa-spin text-white"></i></button>
+  
+                    }@else{
+                      <button [disabled]="logintwofactor.invalid" class="btn " >Login</button>
+  
+                    }
+                      @if (errorMessage !="") {
+                        <p class="text-danger">{{errorMessage}}</p>
+                      }
+                  </div>
+      </div>
+  </form>
+  </div>
+  </div>

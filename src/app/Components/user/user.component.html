@@ -1,0 +1,43 @@
+<div class="users">
+<table class="table table-borderd table-hover">
+    <thead>
+        <tr>
+            <th>IMAGE</th>
+            <th>NAME</th>
+            <th>ROLE</th>
+            <th>AGE</th>
+            <th>NATIONALITY</th>
+            <th>EMAIL</th>
+            <th>PHONE</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (user of allusers; track $index) {
+          @if (user.userId != userid) {
+            <tr>
+                <td>
+                    <img src="../../../assets/Images/profile.jpg" alt="">
+                </td>
+                <td>{{user.name}}</td>
+                <td>{{user.role}}</td>
+                <td>{{user.age}}</td>
+                <td>{{user.nationality}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.phoneNumber}}</td>
+                <td><button class="btn btn-danger" (click)="deleteUser(user.userId)"><i class="fa-solid fa-trash-can"></i></button></td>
+                <td>
+                    <select class="form-control" [value]="user.role" (change)="changeRole($event,user.userId)">
+                        <option value="Admin">Admin</option>
+                        <option value="User">User</option>
+                        <option value="Seller">Seller</option>
+                    </select>
+                </td>
+
+            </tr>
+          }
+        }
+    </tbody>
+</table>
+</div>

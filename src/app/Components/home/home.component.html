@@ -1,0 +1,86 @@
+@if (isloading) {
+
+    <app-loading></app-loading>
+}
+
+
+<div class="home min-vh-100">
+    <div class="Home-Welcome  ms-5">
+        <p>The new collection 2024</p>
+        <h1>COMFORT <br> FASHION</h1>
+        <a routerLink="/products">COLLECTION</a>
+    </div>
+</div>
+
+<table class="table table-bordered text-center  my-0">
+    <tbody>
+        <tr>
+            <td><i class="fa-solid fa-truck-fast mx-2"></i>Free shipping</td>
+            <td><i class="fa-solid fa-dollar-sign mx-2"></i>Money guarantee</td>
+            <td><i class="fa-solid fa-headphones mx-2"></i>Online support</td>
+            <td><i class="fa-solid fa-rotate-left mx-2"></i>Returns products</td>
+        </tr>
+    </tbody>
+</table>
+
+<section id="trends">
+    <div>
+        <p>2024</p>
+        <h2>FASHION TRENDS</h2>
+        <h3>SPECIAL OFFER</h3>
+    </div>
+</section> 
+
+<section class="py-5">
+   <div class="container">
+    <div class="titlesection">
+        <p class="text-muted my-0">MADE THE HARD WAY</p>
+        <h5>CLOTHES</h5>
+    </div>
+    <div class="products my-3">
+       <div class="row gx-3 gy-4">
+        @for (product of tshirt; track $index) {
+            <app-single-product class="col-md-3" [myproduct]="product"></app-single-product>
+        }
+       </div>
+    </div>
+   </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+     <div class="titlesection">
+         <p class="text-muted my-0">MADE THE HARD WAY</p>
+         <h5>WATCHES</h5>
+     </div>
+     <div class="products my-3">
+        <div class="row gx-3 gy-4">
+         @for (product of watches; track $index) {
+             <app-single-product class="col-md-3" [myproduct]="product"></app-single-product>
+         }
+        </div>
+     </div>
+    </div>
+ </section>
+ 
+ <section class="py-5">
+    <div class="container">
+     <div class="titlesection">
+         <p class="text-muted my-0">MADE THE HARD WAY</p>
+         <h5>BAGS</h5>
+     </div>
+     <div class="products my-3">
+        <div class="row gx-3 gy-4">
+         @for (product of bags; track $index) {
+             <app-single-product class="col-md-3" [myproduct]="product"></app-single-product>
+         }
+        </div>
+     </div>
+    </div>
+ </section>
+
+
+  
+
+
+<app-footer></app-footer>

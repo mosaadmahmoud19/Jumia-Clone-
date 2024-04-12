@@ -1,0 +1,130 @@
+
+
+
+
+  <!--banner-->
+  <div class="baner">
+    <div class="ms-4 text-white">
+        <h1>Contactus</h1>
+        <div class="links">
+            <a routerLink="/home">Home</a> <span>/</span> <a routerLink="/contactus">Contactus</a>
+    
+        </div>
+    </div>
+
+</div>
+
+<section >
+    <div class="popular-collection">
+        <div class="row">
+        <p class="stay-in-touch">Stay in touch with us</p><br>
+      <h2 class="popular-collection-h2">QUICK SUPPORT</h2>
+        </div>
+    </div>
+<div class="website-info ">
+    <div class="container ">
+        <div class="row g-3">
+            <div class="col-6 col-md-3  iconss">
+                <i class="bi bi-geo-alt icons"></i>
+                <h3 class="h3">STORE ADDRESS</h3>
+                <p class="h3-info">Lorem ipsum is simply dummy text
+                    printing and typesetting industry</p>
+            </div>
+            <div class="col-6 col-md-3 ">
+                <i class="bi bi-telephone icons"></i>
+                <h3 class="h3">PHONE NUMBER</h3>
+                <p class="h3-info">+20 10-2345-6789 <br>
+                    +20 10-9876-5432</p>
+    
+            </div>
+            <div class="col-6 col-md-3 ">
+                <i class="bi bi-envelope icons"></i>
+                <h3 class="h3">EMAIL ADDRESS</h3>
+                <p class="h3-info">support&#64;stellastore.com
+                    resume&#64;stellastore.com</p>
+    
+            </div>
+            <div class="col-6 col-md-3 ">
+                <i class="bi bi-clock icons"></i>
+                <h3 class="h3">HOUR OPERATION</h3>
+                <p class="h3-info">Mon - Fri: 08:30 - 20:00 <br>
+                    Sat - Sun: 09:30 - 21:30</p>
+    
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+
+<section>
+    <div class="container">
+
+        <div class="row g-3 align-items-center">
+          
+            <div class="col-md-6 order-2 order-md-1">
+                <form  [formGroup]="messageForm" (ngSubmit)="handelForm()" >
+                 
+                        <div class="form-item">
+                            <input formControlName="name" type="text" class="form-control" placeholder="name" id="name">
+                            @if (messageForm.get("name")?.errors &&messageForm.get("name")?.touched) {
+                              @if (messageForm.get("name")?.getError("required")) {
+                                <p class=" text-danger">Name is required</p>
+                              }
+                              @if (messageForm.get("name")?.getError("minlength")) {
+                                <p class=" text-danger">minLength is 3</p>
+                              }
+                              @if (messageForm.get("name")?.getError("maxlength")) {
+                                <p class=" text-danger">maxLength is 20</p>
+                              }
+                            }
+                        </div>
+    
+                        <div class="form-item">
+                            <input formControlName="phone" type="tel" class="form-control" placeholder="phone" id="phone">
+                        @if (messageForm.get("phone")?.errors &&messageForm.get("phone")?.touched) {
+                          @if (messageForm.get("phone")?.getError("required")) {
+                            <p class=" text-danger">phone is required</p>
+                          }
+                          @if (messageForm.get("phone")?.getError("pattern")) {
+                            <p class=" text-danger">Must be Start with 01|0,1,5,2 and 8 numbers </p>
+                          }
+                        }
+                        </div >
+    
+                        <div class="form-item">
+                            <input formControlName="email" type="email" class="form-control" placeholder="email" id="email">
+                            @if (messageForm.get("email")?.errors &&messageForm.get("email")?.touched) {
+                              @if (messageForm.get("email")?.getError("required")) {
+                                <p class="text-danger">Email is required</p>
+                              }
+                              @if (messageForm.get("email")?.getError("email")) {
+                                <p class=" text-danger">Email should be Example&#64;yahoo.com</p>
+                              }
+                            
+                            }
+                        </div >
+    
+                        <div class="form-item">
+                            <textarea  formControlName="message"   rows="3" placeholder="Message" class=" form-control"></textarea>
+                            @if (messageForm.get("message")?.errors &&messageForm.get("message")?.touched) {
+                                @if (messageForm.get("message")?.getError("required")) {
+                                  <p class="text-danger">Message is required</p>
+                                }}
+                        </div >
+    
+                        <button [disabled]="messageForm.invalid">SEND MESSAGE</button>
+                        <p [classList]="messagecolor">{{message}}</p>
+    
+                </form>
+
+            </div>
+            <div class="col-md-6 order-1 order-md-2">
+                <img src="../../../assets/Images/4025187.jpg" class="w-100" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+  <app-footer></app-footer>

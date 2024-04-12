@@ -1,0 +1,22 @@
+<div class="body">
+    <div class="navv">
+            <div><a  routerLink="profile"><i class="fa-solid fa-user pe-3 fa-fw"></i></a></div>
+            
+            @if(userData.role == "Admin" || userData.role == "Seller"){
+
+                <div><a routerLink="addproduct"><i class="fa-solid fa-circle-plus pe-3 fa-fw"></i></a></div>
+
+
+            }
+           
+            @if(userData.role == "Admin"){
+                <div><a routerLink="categories"><i class="fa-solid fa-layer-group"></i></a></div>
+
+                <div><a routerLink="users"><i class="fa-solid fa-user-gear"></i></a></div>
+            }
+       
+    </div>
+    <div class="container pb-5">
+       <router-outlet></router-outlet>
+    </div>
+</div>

@@ -1,0 +1,276 @@
+<div class="baner">
+    <div class="ms-4 text-white">
+        <h1>Products</h1>
+        <div class="links">
+            <a routerLink="/home">Home</a> <span>/</span> <a routerLink="/products">Products</a>
+    
+        </div>
+    </div>
+
+</div>
+
+
+<section class="my-5 py-5">
+    <div class="title text-center my-5">
+        <h1>POPULAR COLLECTION</h1>
+    </div>
+
+
+
+    <div class="container">
+        <owl-carousel-o  [options]="myoption" >
+           
+            <ng-template  carouselSlide>
+                <div class="item" routerLink="/products/Sweatshirts" >
+                  <img src="../../../assets/Images/hoodie-collection1.webp" (click)="FilterCategory2('Sweatshirts')" alt="">
+                </div>
+            </ng-template>
+            <ng-template  carouselSlide>
+                <div class="item" routerLink="/products/Watches">
+                  <img src="../../../assets/Images/watch.jpeg" (click)="FilterCategory2('Watches')"  alt="">
+                </div>
+            </ng-template>
+            <ng-template  carouselSlide>
+              <div class="item" routerLink="/products/Skirts ">
+                <img src="../../../assets/Images/skirt.jpeg" (click)="FilterCategory2('Skirts ')"  alt="">
+              </div>
+          </ng-template>
+            <ng-template  carouselSlide>
+                <div class="item" routerLink="/products/Shortsleeves">
+                  <img src="../../../assets/Images/shirt.png" (click)="FilterCategory2('Shortsleeves')" alt="">
+                </div>
+            </ng-template>
+            <ng-template  carouselSlide>
+                <div class="item" routerLink="/products/Shoes">
+                  <img src="../../../assets/Images/700x700px_collections_3.webp" (click)="FilterCategory2('Shoes')" alt="">
+                </div>
+            </ng-template>
+            <ng-template  carouselSlide>
+                <div class="item" routerLink="/products/Blazers">
+                  <img src="../../../assets/Images/700x700px_collections_8.webp" (click)="FilterCategory2('Blazers')" alt="">
+                </div>
+            </ng-template>
+            <ng-template  carouselSlide >
+                <div class="item" routerLink="/products/Bags">
+                  <img src="../../../assets/Images/11-handbag.webp" (click)="FilterCategory2('Bags')" alt="">
+                </div>
+            </ng-template>
+          
+            
+        </owl-carousel-o> 
+        
+       </div>
+</section>
+  
+
+    <div class="container">
+        <div class="row gx-3 gy-4">
+            <div class="col-md-3">
+                <div class="filters">
+                  <div class="d-block w-100 accordion accordion-flush" id="accordionFlushExample">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                          SEARCH
+                        </button>
+                      </h2>
+                      <div id="flush-collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                        <div class="form-item">
+                         <div class="row">
+                          <div class="col-12">
+                            <input type="search" placeholder="Search" class="form-control" [(ngModel)]="searchvalue" (ngModelChange)="search()">
+                          </div>
+                         
+                         </div>
+                    
+
+                        </div>
+                      
+
+
+                      </div>
+                    </div>
+                    
+                 
+                  </div>
+                    <div class="d-block w-100 accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item">
+                          <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                              CATEGORIES
+                            </button>
+                          </h2>
+                          <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                            <div class="form-item">
+                              <div class="form-check">
+                                <input  class="form-check-input" type="radio" name="role" id="all" value="" (change)="FilterCategory($event)" checked>
+                                <label class="form-check-label" for="all">
+                                  ALL Products
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input  class="form-check-input" type="radio" name="role" id="cat1" value="Bags" (change)="FilterCategory($event)" >
+                                <label class="form-check-label" for="cat1">
+                                  Bags
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input  class="form-check-input" type="radio" name="role" id="cat2" value="Sweatshirts" (change)="FilterCategory($event)" >
+                                <label class="form-check-label" for="cat2">
+                                  Sweatshirts
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input  class="form-check-input" type="radio" name="role" id="cat3" value="Watches" (change)="FilterCategory($event)" >
+                                <label class="form-check-label" for="cat3">
+                                  Watches
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input  class="form-check-input" type="radio" name="role" id="cat4" value="Shoes" (change)="FilterCategory($event)" >
+                                <label class="form-check-label" for="cat4">
+                                  Shoes
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input  class="form-check-input" type="radio" name="role" id="cat5" value="Shortsleeves" (change)="FilterCategory($event)" >
+                                <label class="form-check-label" for="cat5">
+                                  Tshirts
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input  class="form-check-input" type="radio" name="role" id="cat6" value="Blazers" (change)="FilterCategory($event)" >
+                                <label class="form-check-label" for="cat5">
+                                  Blazers
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input  class="form-check-input" type="radio" name="role" id="cat7" value="Sweaters" (change)="FilterCategory($event)" >
+                                <label class="form-check-label" for="cat7">
+                                  Sweaters
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input  class="form-check-input" type="radio" name="role" id="cat8" value="Skirts" (change)="FilterCategory($event)" >
+                                <label class="form-check-label" for="cat8">
+                                  Skirts 
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                     
+                      </div>
+                      <div class="d-block w-100 accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item">
+                          <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsetwo" aria-expanded="false" aria-controls="flush-collapsetwo">
+                              PRICE
+                            </button>
+                          </h2>
+                          <div id="flush-collapsetwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                            <div class="form-item">
+                              <div class="form-check">
+                                <input  class="form-check-input" type="radio" name="price" id="Ascending" value="Ascending" (click)="filterMinPrice()" >
+                                <label class="form-check-label" for="Ascending">
+                                  Ascending 
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input  class="form-check-input" type="radio" name="price" id="Descending" value="Descending" (click)="filterMaxPrice()" >
+                                <label class="form-check-label" for="Descending">
+                                  Descending
+                                </label>
+                              </div>
+
+                            </div>
+                          
+
+
+                          </div>
+                        </div>
+                        
+                     
+                      </div>
+
+                      <div class="d-block w-100 accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item">
+                          <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsethree" aria-expanded="false" aria-controls="flush-collapsethree">
+                              ONSALE
+                            </button>
+                          </h2>
+                          <div id="flush-collapsethree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                            <div class="form-item">
+                              <div class="form-check">
+                                <input  class="form-check-input" type="radio" name="sale" id="onsale" value="true" (click)="filteronSale($event)" >
+                                <label class="form-check-label" for="onsale">
+                                  OnSale 
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input  class="form-check-input" type="radio" name="sale" id="notonsale" value="false" (click)="filteronSale($event)" >
+                                <label class="form-check-label" for="notonsale">
+                                  Not in Sale
+                                </label>
+                              </div>
+
+                            </div>
+                          
+
+
+
+                          </div>
+                        </div>
+                        
+                     
+                      </div>
+                </div>
+            </div>
+            <div class="col-md-9  mt-5">
+                <div class=" d-flex justify-content-end grid">
+                    <svg  (click)="MakeSingleProduct()" xmlns="http://www.w3.org/2000/svg" class="icon icon-list feather feather-list mx-2" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+                    <svg (click)="MakemultProducts()"  xmlns="http://www.w3.org/2000/svg" class="icon icon-grid feather feather-grid mx-2" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                </div>
+                <div class="row gx-3 gy-4 py-5">
+                    @if (multproduct==true) {
+                      @for (item of allProducts; track $index) {
+                        <app-single-product class="col-md-4" [myproduct]="item"></app-single-product>
+                    }
+
+                    }
+                    @if (singleproduct==true) {
+
+                      @for (item of allProducts; track $index) {
+                        <app-single-product-v2 class="col-md-12" [myproduct]="item"></app-single-product-v2>
+                    }
+                    }
+                    <div class="text-center my-5">
+            
+                      <button class="button" (click)="moreProducts()">
+                          <span class="button_lg">
+                              <span class="button_sl"></span>
+                              <span class="button_text">More Products</span>
+                          </span>
+                      </button>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+<app-footer></app-footer>
+
+
+ 
+
+
+
+
+@if (isloading) {
+
+    <app-loading></app-loading>
+} 

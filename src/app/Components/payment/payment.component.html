@@ -1,0 +1,121 @@
+
+<div class="head my-0">
+    <img src="../../../assets/Images/logo.webp" alt="">
+</div>
+
+<div class="container">
+  <div class="row gx-3 align-items-center">
+    <div class="col-md-6 order-md-1 order-2">
+      <div class="payment pb-3">
+        <div class="myform">
+         <h5 class="text-center">PAYMENT</h5>
+         <form [formGroup]="paymentForm" (ngSubmit)="handelForm()">
+            
+             <div class="form-item">
+                 <label for="name">Name</label>
+                 <input formControlName="clientName" type="text" class="form-control" placeholder="Holder Name" id="name">
+                 @if (paymentForm.get("clientName")?.errors &&paymentForm.get("clientName")?.touched) {
+                   @if (paymentForm.get("clientName")?.getError("required")) {
+                     <p class="text-danger">Name is required</p>
+                   }
+               
+                 
+                 }
+               </div>
+             <div class="form-item">
+                 <label for="email">Email</label>
+                 <input formControlName="email" type="email" class="form-control" placeholder="email" id="email">
+                 @if (paymentForm.get("email")?.errors &&paymentForm.get("email")?.touched) {
+                   @if (paymentForm.get("email")?.getError("required")) {
+                     <p class="text-danger">Email is required</p>
+                   }
+                   @if (paymentForm.get("email")?.getError("email")) {
+                     <p class=" text-danger">Email should be Example&#64;yahoo.com</p>
+                   }
+                 
+                 }
+               </div>
+             
+               <div class="form-item">
+                 <label for="Cardnumber">Card Number</label>
+                 <input maxlength="16"  formControlName="cardnumber" type="number" class="form-control" placeholder="#### #### #### ####" id="Cardnumber" >
+                 @if (paymentForm.get("cardnumber")?.errors &&paymentForm.get("cardnumber")?.touched) {
+                   @if (paymentForm.get("cardnumber")?.getError("required")) {
+                     <p class="text-danger">Card Number is required</p>
+                   }
+                   @if (paymentForm.get("cardnumber")?.getError("pattern")) {
+                     <p class="text-danger">Min length is 16 numbers</p>
+                   }
+                 }
+               </div>
+               <div class="row">
+                 <div class="col">
+                     <div class="form-item">
+                         <label for="zipCode">zipCode</label>
+                         <input formControlName="zipCode" maxlength="7" type="text" class="form-control" placeholder="zipCode" id="zipCode">
+                         @if (paymentForm.get("zipCode")?.errors &&paymentForm.get("zipCode")?.touched) {
+                           @if (paymentForm.get("zipCode")?.getError("required")) {
+                             <p class="text-danger">zipCode is required</p>
+                           }
+                         }
+                       
+     
+                       </div>
+                 </div>
+                 <div class="col">
+                     <div class="form-item">
+                         <label for="Cvv">Cvv</label>
+                         <input formControlName="cvv" maxlength="3" type="text" class="form-control" placeholder="Cvv" id="Cvv">
+                         @if (paymentForm.get("cvv")?.errors &&paymentForm.get("cvv")?.touched) {
+                           @if (paymentForm.get("cvv")?.getError("required")) {
+                             <p class="text-danger">Cvv is required</p>
+                           }
+                         }
+                       </div>
+                 </div>
+               </div>
+     
+               <div class="form-item">
+                 <label for="address">Address</label>
+                 <input   formControlName="address" type="text" class="form-control" placeholder="Enter your address" id="address" >
+                 @if (paymentForm.get("address")?.errors &&paymentForm.get("address")?.touched) {
+                   @if (paymentForm.get("address")?.getError("required")) {
+                     <p class="text-danger">Addressis required</p>
+                   }
+                 }
+               </div>
+     
+               <div class="form-item">
+                 <label for="phone">Phone Number</label>
+                 <input  formControlName="phoneNumber" type="tel" class="form-control" placeholder="phone" id="phone">
+                 @if (paymentForm.get("phoneNumber")?.errors &&paymentForm.get("phoneNumber")?.touched) {
+                   @if (paymentForm.get("phoneNumber")?.getError("required")) {
+                     <p class=" text-danger">phone is required</p>
+                   }
+                   @if (paymentForm.get("phoneNumber")?.getError("pattern")) {
+                     <p class=" text-danger">Must be Start with 01|0,1,5,2 and 8 numbers </p>
+                   }
+                 }
+               </div>
+     
+               <div class="text-center ">
+                 <button class="Btn m-auto">
+                     <span class="paytext">Pay
+     
+                         <svg class="svgIcon" viewBox="0 0 576 512"><path d="M512 80c8.8 0 16 7.2 16 16v32H48V96c0-8.8 7.2-16 16-16H512zm16 144V416c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V224H528zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm56 304c-13.3 0-24 10.7-24 24s10.7 24 24 24h48c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm128 0c-13.3 0-24 10.7-24 24s10.7 24 24 24H360c13.3 0 24-10.7 24-24s-10.7-24-24-24H248z"></path></svg>
+     
+                     </span>
+                   </button>
+     
+               </div>
+         </form>
+        </div>
+     
+      
+     </div>
+    </div>
+    <div class="col-md-6 order-md-2 order-1">
+      <img src="../../../assets/Images/3369658.jpg" class="w-100" alt="">
+    </div>
+  </div>
+</div>

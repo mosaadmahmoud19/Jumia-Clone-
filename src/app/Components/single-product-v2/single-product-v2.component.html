@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-md-4">
+        <div class="prodct-img">
+            <img [src]="myproduct.img" class="w-100"  alt="">
+            @if (myproduct.onSale==true) {
+                <span class="onsale">onSale</span>
+              }
+        </div>
+        
+    </div>
+    <div class="col-md-7">
+        <div class="description">
+            <p class="title">{{myproduct.name.substring(0,16)}}</p>
+            <p class="title">{{myproduct.description}}</p>
+            <p>{{myproduct.price|currency}}</p>
+            <div class="mybtns">
+                @if (isdisabled==true || myproduct.stock<2) {
+                    <button class="add-card bg-danger"  disabled  (click)="addTocart(myproduct.id)">OUT OF STOCK</button>
+      
+                  }@else {
+                    <button class="add-card"   (click)="addTocart(myproduct.id)">Add To Cart</button>
+                  }
+                <button class="add-card"  (click)="addtowishlist(myproduct.id)">Add To Wishlist</button>
+                <button class="add-card"  routerLink="/details/{{myproduct.id}}">View</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr>

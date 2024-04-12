@@ -1,0 +1,70 @@
+<nav class="navbar navbar-expand-lg ">
+    <div class="container-fluid">
+      <a class="navbar-brand" ><img src="../../../assets/Images/logo2.webp"  alt=""></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav  m-auto mb-2 mb-lg-0">
+          <li class="nav-item mx-3">
+            <a class="nav-link " routerLink="home" routerLinkActive="navActiv" >Home</a>
+          </li>
+          <li class="nav-item mx-3">
+            <a class="nav-link " routerLink="about" routerLinkActive="navActiv" >About</a>
+          </li>
+          <li class="nav-item mx-3">
+            <a class="nav-link " routerLink="products/all" routerLinkActive="navActiv">Products</a>
+          </li>
+        
+          <li class="nav-item mx-3">
+            <a class="nav-link " routerLink="contactus" routerLinkActive="navActiv">Contact us</a>
+          </li>
+
+           @if ((userData?.role=="Admin" || userData?.role=="Seller") && userData !=null) {
+            <li class="nav-item mx-3">
+              <a class="nav-link " routerLink="dashboard" routerLinkActive="navActiv">Dashboard</a>
+            </li>
+          } 
+
+        </ul>
+        <ul class="navbar-nav  ms-auto mb-2 mb-lg-0">
+          @if (islogin==true) {
+           <div class="mx-3 d-flex align-items-center ">
+            <li class="nav-item ">
+              <button class="nav-link " (click)="openWishlist()" data-bs-toggle="modal" data-bs-target="#exampleModal"  ><img src="../../../assets/Images/heart.png"  class="bag" alt=""></button>
+            </li>
+            <li class="nav-item ">
+              <button class="nav-link " (click)="openNav()" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><img src="../../../assets/Images/carticon.png" class="bag" alt=""></button>
+            </li>
+            @if (userData.role == "User") {
+              <li class="nav-item ">
+                <button class="nav-link " routerLink="/dashboard/profile"><img src="../../../assets/Images/profile.jpg" class="bag" alt=""></button>
+              </li>
+            }
+          
+           </div>
+            <li class="nav-item mx-3">
+              <a class="nav-link signout" (click)="signout()" >SignOut</a>
+            </li>
+          
+
+          }
+          @else {
+            <li class="nav-item mx-3">
+              <a class="nav-link " routerLink="login" routerLinkActive="navActiv">Login</a>
+            </li>
+            <li class="nav-item mx-3">
+              <a class="nav-link " routerLink="register" routerLinkActive="navActiv">Register</a>
+            </li>
+          }
+          
+         
+  
+          </ul>
+       
+      </div>
+    </div>
+  </nav>
+
+  <app-offcnav [cartobj]="cartobj" [cartItems]="cartItems"></app-offcnav>
+  <app-wishlist [wishlistArr]="wishlistArr" ></app-wishlist>

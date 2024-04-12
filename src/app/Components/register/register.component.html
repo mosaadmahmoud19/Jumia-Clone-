@@ -1,0 +1,178 @@
+<div class="bg-white">
+  <div class="container">
+    <form [formGroup]="registerForm" (ngSubmit)="handelForm()">
+    <div class="register row justify-content-center align-items-center">
+       
+            
+                <div class="col-md-6"><img src="./assets/Images/register.jpg" class="w-100" alt=""></div>
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-item">
+                        <label for="name">Full Name</label>
+                        <input formControlName="name" type="text" class="form-control" placeholder="Full Name" id="name">
+                        @if (registerForm.get("name")?.errors &&registerForm.get("name")?.touched) {
+                          @if (registerForm.get("name")?.getError("required")) {
+                            <p class=" text-danger">Name is required</p>
+                          }
+                          @if (registerForm.get("name")?.getError("minlength")) {
+                            <p class=" text-danger">minLength is 3</p>
+                          }
+                          @if (registerForm.get("name")?.getError("maxlength")) {
+                            <p class=" text-danger">maxLength is 20</p>
+                          }
+                        }
+                  
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-item">
+                        <label for="userName">Username</label>
+                        <input formControlName="username" type="text" class="form-control" placeholder="username" id="username">
+                        @if (registerForm.get("username")?.errors &&registerForm.get("username")?.touched) {
+                          @if (registerForm.get("username")?.getError("required")) {
+                            <p class=" text-danger">username is required</p>
+                          }
+                          @if (registerForm.get("username")?.getError("minlength")) {
+                            <p class=" text-danger">minLength is 3</p>
+                          }
+                          @if (registerForm.get("username")?.getError("maxlength")) {
+                            <p class=" text-danger">maxLength is 20</p>
+                          }
+                        }
+                  
+                      </div>
+                    </div>
+                  </div>
+                
+                  <div class="form-item">
+                    <label for="email">Email</label>
+                    <input formControlName="email" type="email" class="form-control" placeholder="email" id="email">
+                    @if (registerForm.get("email")?.errors &&registerForm.get("email")?.touched) {
+                      @if (registerForm.get("email")?.getError("required")) {
+                        <p class="text-danger">Email is required</p>
+                      }
+                      @if (registerForm.get("email")?.getError("email")) {
+                        <p class=" text-danger">Email should be Example&#64;yahoo.com</p>
+                      }
+                    
+                    }
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-item">
+                        <label for="password">Password</label>
+                        <input formControlName="password" type="password" class="form-control" placeholder="password" id="password">
+                        @if (registerForm.get("password")?.errors &&registerForm.get("password")?.touched) {
+                          @if (registerForm.get("password")?.getError("required")) {
+                            <p class=" text-danger">password is required</p>
+                          }
+                          @if (registerForm.get("password")?.getError("pattern")) {
+                            <p class=" text-danger">Password must contain 6 numbers , one capital and small letter </p>
+                          }
+                        }
+                      </div>
+                      
+
+                    </div>
+                    <div class="col">
+                     
+                      <div class="form-item">
+                        <label for="rePassword">Confirm Password</label>
+                        <input formControlName="rePassword" type="password" class="form-control" placeholder="confirm password" id="rePassword">
+                        @if (registerForm.get("rePassword")?.errors &&registerForm.get("rePassword")?.touched) {
+                          @if (registerForm.get("rePassword")?.getError("required")) {
+                            <p class=" text-danger"> Password is required</p>
+                          }
+                          @if (registerForm.get("rePassword")?.getError("mismatch")) {
+                            <p class="text-danger">not match</p>
+                          }
+                        
+                        }
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="row ">
+                    <div class="col">
+                      <div class="form-item">
+                        <label for="phone">Phone Number</label>
+                        <input formControlName="phone" type="tel" class="form-control" placeholder="phone" id="phone">
+                        @if (registerForm.get("phone")?.errors &&registerForm.get("phone")?.touched) {
+                          @if (registerForm.get("phone")?.getError("required")) {
+                            <p class=" text-danger">phone is required</p>
+                          }
+                          @if (registerForm.get("phone")?.getError("pattern")) {
+                            <p class=" text-danger">Must be Start with 01|0,1,5,2 and 8 numbers </p>
+                          }
+                        }
+                      </div>
+                      
+
+                    </div>
+                    <div class="col">
+                     
+                      <div class="form-item">
+                        <label for="nationality">Nationality</label>
+                        <input formControlName="nationality" type="text" class="form-control" placeholder="Nationality" id="nationality">
+                        @if (registerForm.get("nationality")?.errors &&registerForm.get("nationality")?.touched) {
+                          @if (registerForm.get("nationality")?.getError("required")) {
+                            <p class=" text-danger">Nationality is required</p>
+                          }
+                          @if (registerForm.get("nationality")?.getError("minlength")) {
+                            <p class=" text-danger">Minlength is 5 chars </p>
+
+                          }
+                          
+                        }
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="form-item">
+                    <label for="age">Age</label>
+                    <input formControlName="age" type="tel" class="form-control" placeholder="age" id="age">
+                    @if (registerForm.get("age")?.errors && registerForm.get("age")?.touched) {
+                      @if (registerForm.get("age")?.getError("required")) {
+                        <p class=" text-danger">age is required</p>
+                      }
+                      @if (registerForm.get("age")?.getError("min")) {
+                        <p class=" text-danger">Age must be more than 17</p>
+
+                      }
+                     
+                    }
+                  </div>
+                  <div class="form-item">
+                    <label for="role">User Or seller</label>
+                    <div class="form-check">
+                      <input formControlName="role" class="form-check-input" type="radio" name="role" id="userRadio" value="User" (change)="updateRole('User')">
+                      <label class="form-check-label" for="userRadio">
+                        User
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input formControlName="role" class="form-check-input" type="radio" name="role" id="sellerRadio" value="Seller" (change)="updateRole('Seller')" checked>
+                      <label class="form-check-label" for="sellerRadio">
+                        Seller
+                      </label>
+                    </div>
+                  </div>
+                  @if (isLoading) {
+                    
+                    <button [disabled]="registerForm.valid" class="btn " ><i class="fa-solid fa-spinner fa-spin text-white"></i></button>
+
+                  }@else{
+                    <button [disabled]="registerForm.invalid" class="btn " >register</button>
+
+                  }
+                    @if (errorMessage!="") {
+                      <p class="text-danger">{{errorMessage}}</p>
+                    }
+                </div>
+    </div>
+</form>
+</div>
+</div>

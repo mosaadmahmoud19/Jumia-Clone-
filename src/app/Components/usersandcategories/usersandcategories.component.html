@@ -1,0 +1,108 @@
+
+
+
+  <div class="container ">
+    
+   @if ( allcategories && allcategories.length >0) {
+    <div class="row  orders">
+
+        <table class="table table-borderd table-hover text-center ">
+          <thead>
+            <tr>
+              <th>OrderId</th>
+              <th>Client Name</th>
+              <th>email</th>
+              <th>orderDate</th>
+              <th>totalAmount</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of allorders; track $index) {
+              <tr>
+                <td>{{item.orderId}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.orderDate}}</td>
+                <td>{{item.totalAmount|currency}}</td>
+                
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+   }
+  </div>
+
+  <div class="category  pb-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-12 order-2  order-md-2  ">
+          <div class="text-with">
+              <form [formGroup]="addCategoryForm" (ngSubmit)="addCategory()">
+                  <div class="form-item text-center">
+                      <label for="Name" class="text-white">Category Name</label>
+                      <input formControlName="categoryName" type="text" class="form-control text-center w-50 mx-auto " placeholder="Category Name" id="Name">
+                      @if (addCategoryForm.get("categoryName")?.errors &&addCategoryForm.get("categoryName")?.touched) {
+                        @if (addCategoryForm.get("categoryName")?.getError("required")) {
+                          <p class=" text-danger">categoryName is required</p>
+                        }
+                        @if (addCategoryForm.get("categoryName")?.getError("minlength")) {
+                          <p class=" text-danger">minLength is 3</p>
+                        }
+                        @if (addCategoryForm.get("categoryName")?.getError("maxlength")) {
+                          <p class=" text-danger">maxLength is 20</p>
+                        }
+                      }
+                      
+                  </div>
+                  <div class="form-item">
+                      <button [disabled]="addCategoryForm.invalid" class="btnForm">
+                          <div class="svg-wrapper-1">
+                            <div class="svg-wrapper">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                width="30"
+                                height="30"
+                                class="icon"
+                              >
+                                <path
+                                  d="M22,15.04C22,17.23 20.24,19 18.07,19H5.93C3.76,19 2,17.23 2,15.04C2,13.07 3.43,11.44 5.31,11.14C5.28,11 5.27,10.86 5.27,10.71C5.27,9.33 6.38,8.2 7.76,8.2C8.37,8.2 8.94,8.43 9.37,8.8C10.14,7.05 11.13,5.44 13.91,5.44C17.28,5.44 18.87,8.06 18.87,10.83C18.87,10.94 18.87,11.06 18.86,11.17C20.65,11.54 22,13.13 22,15.04Z"
+                                ></path>
+                              </svg>
+                            </div>
+                          </div>
+                          <span>Save</span>
+                        </button>
+                  </div>
+              
+              </form>
+          </div>
+          </div>
+          <div class="col-md-12 order-1 or  order-md-1  ">
+              <table class="table table-borderd table-hover text-center ">
+                  <thead>
+                      <tr>
+                          <th>Category ID</th>
+                          <th>Category Name</th>
+                          <th>Delete Category</th>
+                      </tr>
+                    
+                  </thead>
+                  <tbody >
+                      @for (category of allcategories; track $index) {
+                          <tr>
+                              <td>{{category.id}}</td>
+                              <td>{{category.categoryName}}</td>
+                              <td>
+                                <button class="btn btn-danger"  (click)="deleteCategory(category.id)"><i class="fa-solid fa-trash-can"></i></button>
+                              </td>
+                          </tr>
+                      }
+                  </tbody>
+              </table>
+          </div>
+    </div>
+  </div>
+
+  </div>

@@ -1,0 +1,102 @@
+.head{
+    background-image:url(../../../assets/Images/payment.webp) ;
+    height: 80px;
+    background-position: center center;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+.payment{
+        margin:60px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.myform{
+    width: 60%;
+  
+}
+label{
+    margin-left: 8px;
+}
+@media (max-width:767px){
+  .myform{
+    width: 100%;
+  }
+}
+
+.Btn {
+    width: 200px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    border: none;
+    color: white;
+    font-weight: 600;
+    gap: 8px;
+    cursor: pointer;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.103);
+    position: relative;
+    overflow: hidden;
+    transition-duration: .3s;
+  }
+  
+  .svgIcon {
+    width: 16px;
+  }
+  
+  .svgIcon path {
+    fill: white;
+  }
+  
+  .Btn::before {
+    width: 200px;
+    height: 130px;
+    position: absolute;
+    content: "";
+    background-color: #da467d;
+    border-radius: 50%;
+    left: -100%;
+    top: 0;
+    transition-duration: .3s;   
+  }
+  .paytext{
+    position: absolute;
+
+  }
+  
+  .Btn:hover::before {
+    transition-duration: .3s;
+    transform: translate(100%,-50%);
+    border-radius: 0;
+  }
+  
+  .Btn:active {
+    transform: translate(5px,5px);
+    transition-duration: .3s;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* -------------------------- */
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+     -webkit-appearance: none;
+  }

@@ -1,0 +1,35 @@
+.navActiv{
+    color: black !important;
+    border-bottom: 4px black solid ;
+    border-bottom-right-radius:8px ;
+    border-bottom-left-radius:8px ;
+    transform: translateY(-4px);
+    transition: transform 0.6s;
+    width: fit-content;
+    
+
+}
+.signout{
+    cursor: pointer;
+}
+
+.nav-link {
+    margin: 0 8px;
+    color: black;
+    font-family: "Ysabeau Office", sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.navbar-brand img{
+    width: 80px;
+}
+.navbar{
+    background-color: white;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+}
+
+.bag{
+    width: 25px;
+}

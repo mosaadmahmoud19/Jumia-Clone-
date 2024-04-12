@@ -1,0 +1,33 @@
+ 
+
+  <div class="Product">
+    <div class="productimg">
+      <img [src]="myproduct.img" class="w-100"  alt="">
+      @if (myproduct.onSale==true) {
+        <span class="onsale">onSale</span>
+      }
+    </div>
+    <div class="layer">
+      <p>{{myproduct.name.substring(0,16)}}</p>
+      <p>{{myproduct.price|currency}}</p>
+     
+      <div class="mybtn">
+          <div class="d-flex mb-2 align-items-center  ">
+            <i class="fa-solid fa-heart-circle-plus" (click)="addtowishlist(myproduct.id)" ></i>
+            <i class="fa-solid fa-eye" routerLink="/details/{{myproduct.id}}"></i>
+          </div>
+
+
+          
+            @if (isdisabled==true || myproduct.stock<2) {
+              <button class="add-card bg-danger"  disabled  (click)="addTocart(myproduct.id)">OUT OF STOCK</button>
+
+            }@else {
+              <button class="add-card"   (click)="addTocart(myproduct.id)">Add To Cart</button>
+            }
+         
+        
+      </div>
+    </div>
+    
+  </div>

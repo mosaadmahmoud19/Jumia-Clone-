@@ -1,0 +1,445 @@
+<div class="container myproductscrud">
+    <div class="row gx-5">
+        <div class="col-md-12">
+        <table class="table table-borderd table-hover  ">
+            <thead>
+                <tr>
+                    <th>ProductImg</th>
+                    <th>Name</th>
+                
+                    @if (myrole == "Admin") {
+                      <th>update</th>
+                      <th>Delete</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @for (product of products; track $index) {
+                    <tr>
+                        <td>
+                            <img src="{{product.img}}" alt="">
+                        </td>
+                        <td>
+                            {{product.name}}
+                        </td>
+                       
+                        @if (myrole == "Admin") {
+                          <td >
+                            <button class="btn btn-primary" (click)="updateProduct(product)"><i class="fa-solid fa-pen-to-square"></i></button>
+
+                        </td>
+                          <td>
+                            <button class="btn btn-danger" (click)="deleteProduct(product.id)"><i class="fa-solid fa-trash-can"></i></button>
+                        </td>
+                        }
+                     
+                    </tr>
+                }
+            </tbody>
+        </table>
+        </div>
+          @if (myrole == "Seller") {
+            <div class="col-12  w-75 mx-auto">
+              <div class="formcrud x">
+               <h3 class="text-center">Add Product</h3>
+               <form [formGroup]="addProduct" (ngSubmit)="handelFormAdd()">
+                   <div class="form-item">
+                       <label for="Name">Name</label>
+                       <input formControlName="Name" type="text" class="form-control" placeholder="Name" id="Name">
+                       @if (addProduct.get("Name")?.errors &&addProduct.get("Name")?.touched) {
+                         @if (addProduct.get("Name")?.getError("required")) {
+                           <p class=" text-danger">Name is required</p>
+                         }
+                         @if (addProduct.get("Name")?.getError("minlength")) {
+                           <p class=" text-danger">minLength is 3</p>
+                         }
+                         @if (addProduct.get("Name")?.getError("maxlength")) {
+                           <p class=" text-danger">maxLength is 100</p>
+                         }
+                       }
+                 
+                   </div>
+                   <div class="form-item">
+                       <label for="Description">Description</label>
+                       <textarea formControlName="Description" type="text" class="form-control" placeholder="Description" id="Description"  rows="4" ></textarea>
+                       @if (addProduct.get("Description")?.errors &&addProduct.get("Description")?.touched) {
+                         @if (addProduct.get("Description")?.getError("required")) {
+                           <p class=" text-danger">Description is required</p>
+                         }
+                         @if (addProduct.get("Description")?.getError("minlength")) {
+                           <p class=" text-danger">minLength is 10</p>
+                         }
+                         @if (addProduct.get("Description")?.getError("maxlength")) {
+                           <p class=" text-danger">maxLength is 300</p>
+                         }
+                       }
+                
+                   </div>
+                   <div class="row">
+                       <div class="col">
+                           <div class="form-item">
+                               <label for="Price">Price</label>
+                               <input formControlName="Price" type="number" class="form-control" placeholder="Price" id="Price">
+                               @if (addProduct.get("Price")?.errors &&addProduct.get("Price")?.touched) {
+                                 @if (addProduct.get("Price")?.getError("required")) {
+                                   <p class=" text-danger">Price is required</p>
+                                 }
+                                 @if (addProduct.get("Price")?.getError("pattern")) {
+                                   <p class=" text-danger">Max Price is 9000$</p>
+                                 }
+                                
+                               }
+                         
+                           </div>
+                       </div>
+                       <div class="col">
+                           <div class="form-item">
+                               <label for="Stock">Stock</label>
+                               <input formControlName="Stock" type="number" class="form-control" placeholder="Stock" id="Stock">
+                               @if (addProduct.get("Stock")?.errors &&addProduct.get("Stock")?.touched) {
+                                 @if (addProduct.get("Stock")?.getError("required")) {
+                                   <p class=" text-danger">Stock is required</p>
+                                 }
+                                 @if (addProduct.get("Stock")?.getError("pattern")) {
+                                   <p class=" text-danger">Max Stock 1M</p>
+                                 }
+                                
+                               }
+                         
+                           </div>
+                       </div>
+                   </div>
+                   <div class="form-item">
+                       <label for="OnSale">OnSale</label>
+                       <select class="form-select" formControlName="OnSale" aria-label="Default select example">
+                           <option value="true">true</option>
+                           <option value="false">false</option>
+                         </select>
+   
+                       @if (addProduct.get("OnSale")?.errors &&addProduct.get("OnSale")?.touched) {
+                         @if (addProduct.get("OnSale")?.getError("required")) {
+                           <p class=" text-danger">OnSale is required</p>
+                         }
+                      
+                       }
+                 
+                   </div>
+                   <div class="form-item">
+                       <label for="CategoryID">Category</label>
+                       <select class="form-select" formControlName="CategoryID" aria-label="Default select example">
+                           @for (item of allcategories; track $index) {
+                               <option value="{{item.id}}">{{item.categoryName}}</option>
+   
+                           }
+                         </select>
+   
+                       @if (addProduct.get("CategoryID")?.errors &&addProduct.get("CategoryID")?.touched) {
+                         @if (addProduct.get("CategoryID")?.getError("required")) {
+                           <p class=" text-danger">Category is required</p>
+                         }
+                      
+                       }
+                 
+                   </div>
+   
+                   <div class="form-item">
+                       <label for="images">Images</label>
+                       <input type="file" multiple class="form-control"  (change)="onFileSelected($event)">
+                   </div>
+                   
+                   <div class="btn-form my-3 text-center">
+                       <button  class="btnForm">
+                           <div class="svg-wrapper-1">
+                             <div class="svg-wrapper">
+                               <svg
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 viewBox="0 0 24 24"
+                                 width="30"
+                                 height="30"
+                                 class="icon"
+                               >
+                                 <path
+                                   d="M22,15.04C22,17.23 20.24,19 18.07,19H5.93C3.76,19 2,17.23 2,15.04C2,13.07 3.43,11.44 5.31,11.14C5.28,11 5.27,10.86 5.27,10.71C5.27,9.33 6.38,8.2 7.76,8.2C8.37,8.2 8.94,8.43 9.37,8.8C10.14,7.05 11.13,5.44 13.91,5.44C17.28,5.44 18.87,8.06 18.87,10.83C18.87,10.94 18.87,11.06 18.86,11.17C20.65,11.54 22,13.13 22,15.04Z"
+                                 ></path>
+                               </svg>
+                             </div>
+                           </div>
+                           <span>Save</span>
+                         </button>
+                         
+                   </div>
+               </form>
+              </div>
+           </div>
+          }@else {
+            <div class="col-12 col-md-6">
+              <div class="formcrud x">
+               <h3 class="text-center">Add Product</h3>
+               <form [formGroup]="addProduct" (ngSubmit)="handelFormAdd()">
+                   <div class="form-item">
+                       <label for="Name">Name</label>
+                       <input formControlName="Name" type="text" class="form-control" placeholder="Name" id="Name">
+                       @if (addProduct.get("Name")?.errors &&addProduct.get("Name")?.touched) {
+                         @if (addProduct.get("Name")?.getError("required")) {
+                           <p class=" text-danger">Name is required</p>
+                         }
+                         @if (addProduct.get("Name")?.getError("minlength")) {
+                           <p class=" text-danger">minLength is 3</p>
+                         }
+                         @if (addProduct.get("Name")?.getError("maxlength")) {
+                           <p class=" text-danger">maxLength is 100</p>
+                         }
+                       }
+                 
+                   </div>
+                   <div class="form-item">
+                       <label for="Description">Description</label>
+                       <textarea formControlName="Description" type="text" class="form-control" placeholder="Description" id="Description"  rows="4" ></textarea>
+                       @if (addProduct.get("Description")?.errors &&addProduct.get("Description")?.touched) {
+                         @if (addProduct.get("Description")?.getError("required")) {
+                           <p class=" text-danger">Description is required</p>
+                         }
+                         @if (addProduct.get("Description")?.getError("minlength")) {
+                           <p class=" text-danger">minLength is 10</p>
+                         }
+                         @if (addProduct.get("Description")?.getError("maxlength")) {
+                           <p class=" text-danger">maxLength is 300</p>
+                         }
+                       }
+                
+                   </div>
+                   <div class="row">
+                       <div class="col">
+                           <div class="form-item">
+                               <label for="Price">Price</label>
+                               <input formControlName="Price" type="number" class="form-control" placeholder="Price" id="Price">
+                               @if (addProduct.get("Price")?.errors &&addProduct.get("Price")?.touched) {
+                                 @if (addProduct.get("Price")?.getError("required")) {
+                                   <p class=" text-danger">Price is required</p>
+                                 }
+                                 @if (addProduct.get("Price")?.getError("pattern")) {
+                                   <p class=" text-danger">Max Price is 9000$</p>
+                                 }
+                                
+                               }
+                         
+                           </div>
+                       </div>
+                       <div class="col">
+                           <div class="form-item">
+                               <label for="Stock">Stock</label>
+                               <input formControlName="Stock" type="number" class="form-control" placeholder="Stock" id="Stock">
+                               @if (addProduct.get("Stock")?.errors &&addProduct.get("Stock")?.touched) {
+                                 @if (addProduct.get("Stock")?.getError("required")) {
+                                   <p class=" text-danger">Stock is required</p>
+                                 }
+                                 @if (addProduct.get("Stock")?.getError("pattern")) {
+                                   <p class=" text-danger">Max Stock 1M</p>
+                                 }
+                                
+                               }
+                         
+                           </div>
+                       </div>
+                   </div>
+                   <div class="form-item">
+                       <label for="OnSale">OnSale</label>
+                       <select class="form-select" formControlName="OnSale" aria-label="Default select example">
+                           <option value="true">true</option>
+                           <option value="false">false</option>
+                         </select>
+   
+                       @if (addProduct.get("OnSale")?.errors &&addProduct.get("OnSale")?.touched) {
+                         @if (addProduct.get("OnSale")?.getError("required")) {
+                           <p class=" text-danger">OnSale is required</p>
+                         }
+                      
+                       }
+                 
+                   </div>
+                   <div class="form-item">
+                       <label for="CategoryID">Category</label>
+                       <select class="form-select" formControlName="CategoryID" aria-label="Default select example">
+                           @for (item of allcategories; track $index) {
+                               <option value="{{item.id}}">{{item.categoryName}}</option>
+   
+                           }
+                         </select>
+   
+                       @if (addProduct.get("CategoryID")?.errors &&addProduct.get("CategoryID")?.touched) {
+                         @if (addProduct.get("CategoryID")?.getError("required")) {
+                           <p class=" text-danger">Category is required</p>
+                         }
+                      
+                       }
+                 
+                   </div>
+   
+                   <div class="form-item">
+                       <label for="images">Images</label>
+                       <input type="file" multiple class="form-control"  (change)="onFileSelected($event)">
+                   </div>
+                   
+                   <div class="btn-form my-3 text-center">
+                       <button class="btnForm">
+                           <div class="svg-wrapper-1">
+                             <div class="svg-wrapper">
+                               <svg
+                                 xmlns="http://www.w3.org/2000/svg"
+                                 viewBox="0 0 24 24"
+                                 width="30"
+                                 height="30"
+                                 class="icon"
+                               >
+                                 <path
+                                   d="M22,15.04C22,17.23 20.24,19 18.07,19H5.93C3.76,19 2,17.23 2,15.04C2,13.07 3.43,11.44 5.31,11.14C5.28,11 5.27,10.86 5.27,10.71C5.27,9.33 6.38,8.2 7.76,8.2C8.37,8.2 8.94,8.43 9.37,8.8C10.14,7.05 11.13,5.44 13.91,5.44C17.28,5.44 18.87,8.06 18.87,10.83C18.87,10.94 18.87,11.06 18.86,11.17C20.65,11.54 22,13.13 22,15.04Z"
+                                 ></path>
+                               </svg>
+                             </div>
+                           </div>
+                           <span>Save</span>
+                         </button>
+                         
+                   </div>
+               </form>
+              </div>
+           </div>
+          }
+  
+        @if (myrole == "Admin") {
+
+          <div class="col-12  col-md-5 offset-md-1">
+            <div class="formcrud ">
+             <h3 class="text-center">Update Product</h3>
+             <form [formGroup]="updateProductForm" (ngSubmit)="handelFormupdate()">
+                 <div class="form-item">
+                     <label for="Name">Name</label>
+                     <input formControlName="Name" type="text" class="form-control" placeholder="Name" id="Name">
+                     @if (updateProductForm.get("Name")?.errors &&updateProductForm.get("Name")?.touched) {
+                       @if (updateProductForm.get("Name")?.getError("required")) {
+                         <p class=" text-danger">Name is required</p>
+                       }
+                       @if (updateProductForm.get("Name")?.getError("minlength")) {
+                         <p class=" text-danger">minLength is 3</p>
+                       }
+                       @if (updateProductForm.get("Name")?.getError("maxlength")) {
+                         <p class=" text-danger">maxLength is 100</p>
+                       }
+                     }
+               
+                 </div>
+                 <div class="form-item">
+                     <label for="Description">Description</label>
+                     <textarea formControlName="Description" type="text" class="form-control" placeholder="Description" id="Description"  rows="4" ></textarea>
+                     @if (updateProductForm.get("Description")?.errors &&updateProductForm.get("Description")?.touched) {
+                       @if (updateProductForm.get("Description")?.getError("required")) {
+                         <p class=" text-danger">Description is required</p>
+                       }
+                       @if (updateProductForm.get("Description")?.getError("minlength")) {
+                         <p class=" text-danger">minLength is 10</p>
+                       }
+                       @if (updateProductForm.get("Description")?.getError("maxlength")) {
+                         <p class=" text-danger">maxLength is 300</p>
+                       }
+                     }
+               
+                 </div>
+                 <div class="row">
+                     <div class="col">
+                         <div class="form-item">
+                             <label for="Price">Price</label>
+                             <input formControlName="Price" type="number" class="form-control" placeholder="Price" id="Price">
+                             @if (updateProductForm.get("Price")?.errors &&updateProductForm.get("Price")?.touched) {
+                               @if (updateProductForm.get("Price")?.getError("required")) {
+                                 <p class=" text-danger">Price is required</p>
+                               }
+                               @if (updateProductForm.get("Price")?.getError("pattern")) {
+                                 <p class=" text-danger">Max Price is 9000$</p>
+                               }
+                              
+                             }
+                       
+                         </div>
+                     </div>
+                     <div class="col">
+                         <div class="form-item">
+                             <label for="Stock">Stock</label>
+                             <input formControlName="Stock" type="number" class="form-control" placeholder="Stock" id="Stock">
+                             @if (updateProductForm.get("Stock")?.errors &&updateProductForm.get("Stock")?.touched) {
+                               @if (updateProductForm.get("Stock")?.getError("required")) {
+                                 <p class=" text-danger">Stock is required</p>
+                               }
+                               @if (updateProductForm.get("Stock")?.getError("pattern")) {
+                                 <p class=" text-danger">Max Stock 1M</p>
+                               }
+                              
+                             }
+                       
+                         </div>
+                     </div>
+                 </div>
+                 <div class="form-item">
+                     <label for="OnSale">OnSale</label>
+                     <select class="form-select" formControlName="OnSale" aria-label="Default select example">
+                         <option value="true">true</option>
+                         <option value="false">false</option>
+                       </select>
+ 
+                     @if (updateProductForm.get("OnSale")?.errors &&updateProductForm.get("OnSale")?.touched) {
+                       @if (updateProductForm.get("OnSale")?.getError("required")) {
+                         <p class=" text-danger">OnSale is required</p>
+                       }
+                    
+                     }
+               
+                 </div>
+                 <div class="form-item">
+                     <label for="CategoryID">Category</label>
+                     <select class="form-select" formControlName="CategoryID" aria-label="Default select example">
+                         @for (item of allcategories; track $index) {
+                             <option value="{{item.id}}">{{item.categoryName}}</option>
+ 
+                         }
+                       </select>
+ 
+                     @if (updateProductForm.get("CategoryID")?.errors &&updateProductForm.get("CategoryID")?.touched) {
+                       @if (updateProductForm.get("CategoryID")?.getError("required")) {
+                         <p class=" text-danger">Category is required</p>
+                       }
+                    
+                     }
+               
+                 </div>
+ 
+                 <div class="form-item">
+                     <label for="images">Images</label>
+                     <input type="file" multiple class="form-control"  (change)="onFileSelected2($event)">
+                 </div>
+                 <div class="btn-form my-3 text-center">
+                     <button  class="btnForm">
+                         <div class="svg-wrapper-1">
+                           <div class="svg-wrapper">
+                             <svg
+                               xmlns="http://www.w3.org/2000/svg"
+                               viewBox="0 0 24 24"
+                               width="30"
+                               height="30"
+                               class="icon"
+                             >
+                               <path
+                                 d="M22,15.04C22,17.23 20.24,19 18.07,19H5.93C3.76,19 2,17.23 2,15.04C2,13.07 3.43,11.44 5.31,11.14C5.28,11 5.27,10.86 5.27,10.71C5.27,9.33 6.38,8.2 7.76,8.2C8.37,8.2 8.94,8.43 9.37,8.8C10.14,7.05 11.13,5.44 13.91,5.44C17.28,5.44 18.87,8.06 18.87,10.83C18.87,10.94 18.87,11.06 18.86,11.17C20.65,11.54 22,13.13 22,15.04Z"
+                               ></path>
+                             </svg>
+                           </div>
+                         </div>
+                         <span>Save</span>
+                       </button>
+                       
+                 </div>
+             </form>
+            </div>
+         </div>
+        }
+       
+    </div>
+</div>

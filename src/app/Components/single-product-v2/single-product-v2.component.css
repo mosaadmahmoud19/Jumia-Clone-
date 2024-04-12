@@ -1,0 +1,35 @@
+.add-card{
+    width: fit-content;
+    padding: 10px;
+    background-color: black;
+    color: white;
+    border: none;
+    outline: none;
+    margin-right:  10px ;
+   }
+   .add-card:hover{
+    background-color: rgb(0,0,0,0.8);
+   }
+
+   @media (max-width:767px){
+    .discriotion{
+        text-align: center;
+    }
+   }
+.prodct-img{
+    position: relative;
+
+}
+
+
+   .onsale{
+    position: absolute;
+    background-color: black;
+    color: white;
+    width: fit-content;
+    padding: 5px 10px;
+    right: 10px;
+    top: 10px;
+    display: block;
+    user-select: none;
+   }

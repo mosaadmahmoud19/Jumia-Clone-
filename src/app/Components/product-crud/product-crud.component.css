@@ -1,0 +1,107 @@
+td ,th{
+    padding: 10px;
+    vertical-align: middle;
+    text-transform: capitalize;
+}
+td img{
+    width: 70px;
+    clip-path: circle(50%);
+}
+.formcrud{
+    color: white;
+    border: 2px solid #da467d;
+    border-radius: 20px;
+    padding: 20px;
+}
+.form-item{
+    margin: 20px 0 ;
+}
+label{
+    margin-left: 8px;
+    margin-bottom: 10px;
+}
+
+select option{
+    display: block;
+    margin: 20px 0;
+}
+
+
+
+
+
+
+
+
+
+/* ------------------------------------------ */
+
+
+.btnForm{
+    font-family: inherit;
+    font-size: 20px;
+    background: #da467d;
+    color: white;
+    fill: white;
+    padding: 8px 20px;
+    padding-left: 0.9em;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    border-radius: 15px;
+    font-weight: 1000;
+    margin: auto;
+  }
+  
+  .btnForm span {
+    display: block;
+    margin-left: 0.3em;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .btnForm svg {
+    display: block;
+    transform-origin: center center;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .btnForm:hover {
+    background: #000;
+    border-color: white;
+    border: 2px solid;
+  }
+  
+  .btnForm:hover .svg-wrapper {
+    transform: scale(1.25);
+    transition: 0.5s linear;
+  }
+  
+  .btnForm:hover svg {
+    transform: translateX(1.2em) scale(1.1);
+    fill: #fff;
+  }
+ 
+  .btnForm:hover span {
+    opacity: 0;
+    transition: 0.5s linear;
+  }
+  .myproductscrud{
+    padding-bottom: 20px;
+  }
+  .btnForm:active {
+    transform: scale(0.95);
+  }
+  @media (max-width:767px){
+    .myproductscrud{
+    padding-bottom: 80px;
+    }
+    .formcrud{
+      margin: 20px 0;
+    }
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+     -webkit-appearance: none;
+  }

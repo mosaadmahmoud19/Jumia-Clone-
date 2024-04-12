@@ -1,0 +1,56 @@
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header ">
+      <h5 class="offcanvas-title" id="offcanvasRightLabel">Your Cart</h5>
+      <i class="fa-solid fa-xmark ms-auto fs-4" data-bs-dismiss="offcanvas" aria-label="Close"></i>
+    </div>
+    <div class="offcanvas-body p-4">
+      @if (cartItems && cartItems.length==0) {
+        <div class="imggg  w-100 ">
+          <img src="../../../assets/Images/RUNA42QBoA.png" class="w-100 text-center" alt="">
+         </div>
+      }@else {
+        @for (item of cartItems; track $index) {
+          <div class="row item">
+            <div class="col-4">
+              <div class="item-img">
+                <img [src]="item.img" class="w-100" alt="">
+                <div class="layer-q">
+                  <span>{{item.quantity}}</span>
+
+              </div>
+              </div>
+            </div>
+            <div class="col-8">
+              <div>
+                <p>{{item.name}}</p>
+                <p>{{item.unitPrice|currency }}</p>
+              
+               
+                
+                  <button class="delete-button" (click)="removeFromCart(item.productId)">
+                    <svg class="delete-svgIcon" viewBox="0 0 448 512">
+                                      <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path>
+                                      </svg>
+                  </button>
+              </div>
+            </div>
+          </div>
+        
+         }
+
+      }
+       
+      
+    
+      
+    </div>
+  
+      <div class="footerCart text-center">
+       <p class="text-center "> <button class="btn m-auto w-100 rounded-0 fw-bold " (click)="ViewCart()">View Cart</button></p>
+
+    </div>
+
+
+   
+    
+</div>
